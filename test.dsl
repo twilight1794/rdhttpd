@@ -1,9 +1,0 @@
-@es{
-Hola
-@}
-@en{
-Hello
-@}
-@eo{
-Saluton
-@}

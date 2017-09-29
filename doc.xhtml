@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>rdhttpd</title>
+  <meta name="generator" content="Amaya, see http://www.w3.org/Amaya/" />
+  <style type="text/css" title="Amaya theme">
+/* Modern style for Amaya Editor Lite */
+
+/* default rules for the whole document */
+body {
+    font-size: 12pt;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    color: black;
+    background-color: white;
+    line-height: 1.2em;
+    margin-left: 4em;
+    margin-right: 2em;
+   }
+
+/* paragraphs */
+p  {
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: left;
+   }
+
+/* headings */
+h1 {
+    font-size: 180%;
+    font-weight: bold;
+    font-style: normal;
+    font-variant: small-caps;
+    text-align: left;
+    padding: 0;
+    margin-top: 1.7em;
+    margin-bottom: 1.7em;
+   }
+h2 {
+    font-size: 150%;
+    font-weight: bold;
+    font-style: normal;
+    padding: 0;
+    margin-top: 1.5em;
+    margin-bottom: 1.1em;
+   }
+h3 {
+    font-size: 130%;
+    font-weight: bold;
+    font-style: normal;
+    padding: 0;
+    margin-top: 1.3em;
+    margin-bottom: 1.1em;
+   }
+h4 {
+    font-size: 110%;
+    font-weight: bold;
+    font-style: normal;
+    padding: 0;
+    margin-top: 1.1em;
+    margin-bottom: 1.1em;
+   }
+h5 {
+    font-size: 100%;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+   }
+h6 {
+    font-size: 100%;
+    font-weight: normal;
+    font-style: italic;
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+   }
+
+/* divisions */
+div {
+    padding: 0;
+    margin-top: 0em;
+    margin-bottom: 0em;
+   }
+
+/* lists */
+ul, ol {
+    padding: 0 0 0 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+   }
+ul ul, ol ol, ul ol, ol ul {
+    margin-top: 1em;
+    margin-bottom: 1em;
+   }
+li {
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: left;
+   }
+li p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+   }
+dl {
+    padding: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+   }
+dl dl {
+    margin-top: 0em;
+    margin-bottom: 0em;
+   }
+dt {
+    padding: 0;
+    font-weight: bold;
+    margin-top: .3em;
+    margin-bottom: .3em;
+   }
+dd {
+    padding: 0;
+    margin-top: .3em;
+    margin-left: 3em;
+    margin-bottom: .3em;
+   }
+dl p {
+    margin-top: .3em;
+    margin-bottom: .3em;
+   }
+
+/* inline */
+strong {
+    font-weight: bold;
+   }
+em {
+    font-style: italic;
+   }
+code {
+    font-family: Courier New, Courier, monospace;
+   }
+ins {
+    background-color: yellow;
+    text-decoration: underline;
+   }
+del {
+    text-decoration: line-through;
+   }
+
+/* anchors */
+a[href] {
+    color: blue;
+    text-decoration: underline;
+   }
+
+/* end */
+  </style>
+</head>
+
+<body>
+<h1>rdhttpd: rainbow dash http daemon</h1>
+
+<p>rdhttpd is a simple, small, portable, <strong>modular</strong>, and
+extensible HTTP server:</p>
+<dl>
+  <dt>Simple:</dt>
+    <dd>It's very simple, it comes with only the essential options to server a
+      file... or execute a script.</dd>
+  <dt>Small:</dt>
+    <dd>It only sizes 2 MiB of storage. And only requires python3, that is
+      already included on many GNU/Linux distros.</dd>
+  <dt>Portable:</dt>
+    <dd>It's written on Python3, so —in theory— thou can execute in any
+      platform that have a Python3 shell (Windows, macOS, GNU/Linux, Solaris,
+      etc.)</dd>
+  <dt>Modular:</dt>
+    <dd>It comes wit many modules for various functions: thou can remove them
+      if you don't need them.</dd>
+  <dt>Extensible:</dt>
+    <dd>Thou can build thine own modules, and modify the existing modules.</dd>
+</dl>
+
+<p>rdhttpd is <a name="free" id="free"
+href="https://www.gnu.org/philosophy/free-sw.html">free software</a>, it's
+licensed under the <a href="https://www.gnu.org/licenses/gpl.txt">GNU GPL
+v3</a> license.</p>
+
+<h3>Why this name? Isn't it very childish?</h3>
+
+<p>Possibly. In fact, the name is taken from a character of the TV serie <a
+href="https://en.wikipedia.org/wiki/My_Little_Pony:_Friendship_Is_Magic">My
+Little Pony: Friendship Is Magic</a>: Rainbow Dash. She is a very competitive,
+brave and bold pony-pegasus. Since she is a Wonderbolt, she is agile and very
+fast. I wanted to make a simple metaphor with the characteristics of Rainbow
+Dash, and rdhttpd...</p>
+
+<h2>Documentation</h2>
+
+<p>Well, this is a simple explain about the use of this program.</p>
+
+<h3>Overview</h3>
+
+<p>To start the server, usually it's enough whit this:</p>
+
+<p><code>sudo rdhttpd</code></p>
+
+<p>Executing as superuser it's required if thou'll use any port under 1024.
+Otherwise, just type <code>rdhttpd</code>.</p>
+
+<h4>Setting up</h4>
+
+<p>In the rdhttpd directory, there is a file called <kbd>config.py</kbd>. In
+this, is stored all config data, so if for any reason it's inaccesible, rdhttpd
+won't run.</p>
+
+<p></p>
+
+<h3>Modules</h3>
+
+<p>rdhttpd comes with a variety of useful modules. There is a ordered-by-type
+list:</p>
+
+<h4>Protocols</h4>
+<dl>
+  <dt>http09</dt>
+    <dd>The HTTP 0.9 implementation. Very simple, only supports GET method.</dd>
+  <dt>http10</dt>
+    <dd>The HTTP 1.0 implementation. Active by default.</dd>
+  <dt>http11</dt>
+    <dd>The HTTP 1.1 implementation. <em>Experimental</em>.</dd>
+  <dt>rdftpd</dt>
+    <dd>Simple FTP server.</dd>
+  <dt>ipv6</dt>
+    <dd>Implements the IPv6 technology.</dd>
+  <dt>webdav</dt>
+    <dd>Simple WebDAV implementation.</dd>
+  <dt>caldav</dt>
+    <dd>Simple CalDAV implementation.</dd>
+  <dt>carddav</dt>
+    <dd>Simple CardDAV implementation.</dd>
+  <dt>ldap</dt>
+    <dd>Simple LDAP implementation.</dd>
+</dl>
+
+<h4>HTTP extensions</h4>
+<dl>
+  <dt>compress</dt>
+    <dd>Enables the HTTP compress.</dd>
+  <dt>ssl</dt>
+    <dd>Enables the Secure Socket Layer/Transport Layer Security protocol.</dd>
+  <dt>auth</dt>
+    <dd>Enables the basic HTTP access authentication.</dd>
+</dl>
+
+<h4>Internationalization</h4>
+<dl>
+  <dt>dislines2</dt>
+    <dd>Useful module for separate different translations in one text file.
+      Based on <a href="http://danielclemente.com/dislines/">dislines</a>.</dd>
+</dl>
+
+<h4>Preprocessors</h4>
+<dl>
+  <dt>code2html</dt>
+    <dd>Convert the passed code to syntax colored HTML.</dd>
+  <dt>htmlvalid</dt>
+    <dd>Validates the passed HTML/XHTML, using many programs.</dd>
+  <dt>pandoc-md</dt>
+    <dd>A little script that uses pandoc for convert many filetypes to
+    Markdown.</dd>
+  <dt>magenta-md</dt>
+    <dd>Converts MagentaMark syntax to MagentaML + XSLT syntax.</dd>
+  <dt>mediawiki</dt>
+    <dd>Converts a sublanguage of MediaWiki syntax in HTML.</dd>
+</dl>
+
+<h4>Server</h4>
+<dl>
+  <dt>srvstats</dt>
+    <dd>Generates statistics using the log file.</dd>
+  <dt>rdlogs</dt>
+    <dd>Use the rainbow logs instead of the Common Log Format</dd>
+  <dt>rdproxyd</dt>
+    <dd>Execute a simple web proxy.</dd>
+  <dt>quotes</dt>
+    <dd>Manage quotes/blocks for IPs and users</dd>
+</dl>
+
+<h4>How to create a module?</h4>
+
+<p>Please, use this class as a model:</p>
+
+<p><code>class server(object):</code></p>
+
+<p><code>    def printf(msg, importance):</code></p>
+
+<p><code>        pass</code></p>
+
+<p><code>    def __init__(self, host, port, timeout, listen,
+log):</code></p>
+
+<p><code>        self.host = host</code></p>
+
+<p><code>        self.port = port</code></p>
+
+<p><code>        self.timeout = timeout</code></p>
+
+<p><code>        self.listen = listen</code></p>
+
+<p><code>        self.socketId = socket.socket(socket.AF_INET,
+socket.SOCK_STREAM)</code></p>
+
+<p><code>        self.socketId.setsockopt(socket.SOL_SOCKET,
+socket.SO_REUSEADDR, 1)</code></p>
+
+<p><code>        self.socketId.bind((host, port))</code></p>
+
+<p><code>    def start(self):</code></p>
+
+<p><code>        self.socketId.listen(self.listen)</code></p>
+
+<p><code>        while True:</code></p>
+
+<p><code>            client, address =
+self.socketId.accept()</code></p>
+
+<p><code>            client.settimeout(self.timeout)</code></p>
+
+<p><code>            threading.Thread(target =
+self.listenClient,args = (client,address)).start()</code></p>
+
+<p><code>    def listenClient(self, client, address):</code></p>
+
+<p><code>        recvmsg = client.recv(65355)</code></p>
+
+<p><code>        sendmsg =
+self.server(recvmsg.decode("utf-8"))</code></p>
+
+<p><code>        client.send(sendmsg.encode())</code></p>
+
+<p><code>        client.close()</code></p>
+
+<p><code>    def server(self, request):</code></p>
+
+<p><code>        ''' Thou can define your server here.'''</code></p>
+
+<p><code>        response = "Example"</code></p>
+
+<p><code>        return response</code></p>
+
+<h3>Webpages</h3>
+
+<p>This section is about how to create individual Python webpages.</p>
+
+<h4>Structure</h4>
+
+<p>The minimal structure of a Python webpage is:</p>
+
+<p><code>def main(ENV):</code></p>
+
+<p><code>    r = httpresp()</code></p>
+
+<p><code>    r.content = "&lt;html&gt;Hello World,
+Annie!&lt;/html&gt;"</code></p>
+
+<p><code>    return r</code></p>
+
+<p>The server automatically will call to <code>main()</code> function, passing
+the <var>ENV</var> variable, which contents info about the server. So, all
+instructions must be in the <code>main()</code> function.</p>
+
+<p>In this function, the developer must create a instance of the
+<code>httpresp</code> class, which contents all the necessary structures for a
+HTTP response.</p>
+
+<p>The developer can assign to the <var>content</var> attribute the response
+itself, e.g., the HTML code.</p>
+
+<p>Finally, the function must return the identifier of the object.</p>
+
+<h4>httpresp() class</h4>
+
+<p>This class contains all the essential components to create in a easy way a
+correct HTTP response. Here it'll explain each method and attribute:</p>
+
+<h5>Methods</h5>
+<dl>
+  <dt>setHeader()</dt>
+    <dd>Set a request header, or, reset one. Requires two parameters:
+      <var>header</var>, and <var>value</var>. If everything is fine, returns a
+      string containing the two parameters.</dd>
+  <dt>rmHeader()</dt>
+    <dd>Remove a header. Require one parameter: the <var>header</var>. If
+      everything is fine, returns a string containing the header name.</dd>
+</dl>
+
+<h5>Attributes</h5>
+<dl>
+  <dt>header</dt>
+    <dd>Dictionary that stores all the request header fields. There's a key
+      named "<var>statusLine</var>", that contains a list containing the status
+      line. Developers shouldn't modify it directly, and will use instead the
+      predefined methods.</dd>
+  <dt>content</dt>
+    <dd>It contains the body of the response.</dd>
+</dl>
+
+<p>The class it's already built-in in the program. So thou don't need to import
+in your webfile.</p>
+<hr />
+<address>
+  Copyright © 2017 Giovanni Alfredo Garciliano Díaz
+  &lt;giobeatle10@gmail.com&gt;. This webpage is licensed under a <a
+  rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+  Commons Attribution-ShareAlike 4.0 International License</a>. 
+</address>
+</body>
+</html>
