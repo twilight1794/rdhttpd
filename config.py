@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # rdhttpd config
+# Do not touch this file unless you know what you are doing
 
 import os
 import sys
@@ -7,6 +8,7 @@ import sys
 protocolpath = "protocol/"
 protocols = (
     ("http09.py", "GET /?.+"),
+    ("example.py", ".*")
 )
 
 host = "0.0.0.0"

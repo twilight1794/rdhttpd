@@ -25,7 +25,6 @@ import glob
 import importlib
 import socket
 import threading
-import importlib
 
 loadedprotoc = []
 
@@ -82,14 +81,14 @@ def listenClient(client, address):
 
 if __name__ == "__main__":
     print(appInfo["name"] + " v" + appInfo["version"])
-    print("Currently executing from " + os.getcwd())
+    print("INFO: Currently executing from " + os.getcwd())
     try:
         import config
     except:
         print("FATAL: Failed to import config.py")
         exit(1)
     else:
-        print("Imported config.py")
+        print("DEBUG: Imported config.py")
     try:
         import httpconst
         import httpcommon
@@ -97,32 +96,33 @@ if __name__ == "__main__":
         print("FATAL: Failed to import main libraries")
         exit(1)
     else:
-        print("Imported main libraries")
+        print("DEBUG: Imported main libraries")
     # Loads the protocol-modules listed on config.protocols
     for nametuple in config.protocols:
         filemod = os.path.join(config.protocolpath, nametuple[0])
-        print("Importing protocol " + filemod)
+        print("DEBUG: Importing file " + filemod)
         if os.path.isfile(filemod):
             try:
                 path, filemod = os.path.split(filemod)
                 module = "{0}.{1}".format(path, filemod[:-3])
-                print("Importing ", module)
+                print("DEBUG: Importing", module)
                 loadedprotoc.append(importlib.import_module(module))
             except OSError as e:
                 print("ERROR: Failed to import protocol " + filemod)
                 continue
             else:
-                print("Imported " + module)
+                print("DEBUG: Imported " + module)
     # Initialize the servers
     socketId = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     socketId.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
-        print("Intializing socket...")
+        print("DEBUG: Intializing socket...")
         socketId.bind((config.host, config.port))
     except RuntimeError:
-        print("Failed to create a socket")
-        exit(0)
+        print("FATAL: Failed to create a socket")
+        exit(2)
     socketId.listen(config.listen)
+    print("INFO: Listening!!!")
     while True:
         client, address = socketId.accept()
         client.settimeout(config.timeout)

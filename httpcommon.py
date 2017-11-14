@@ -12,14 +12,14 @@ class httpreq(object):
         Returns a dictionary where the key is the header name, and the value is the header value
         The first key is called "requestLine", and contains a tuple with 3 items: method, requested resource, and HTTP version,'''
         self.rawrequest = req
-        listrequest = self.rawrequest.splitlines().pop()
+        listrequest = self.rawrequest.splitlines().pop() # Pop the lastline
         i = 1  # Number of Iteration
         for string in listrequest:
             if i == 1:
                 self.headerlines.setdefault("requestLine", string)
             else:
                 stringtuple = string.split(": ")
-                self.headerlines.setdefault(stringtuple[0], stringtuple[1])
+                self.headerlines[stringtuple[0]] = stringtuple[1]
             i += 1
         return self.headerlines
 
