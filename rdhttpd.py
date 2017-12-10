@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Date of version: 25/ene/2017 (G. C.)
+# Date of version: 9/dic/2017 (G. C.)
 # The Rainbow Dash HTTP Daemon Server
 # Copyright © 2017 Giovanni Alfredo Garciliano Díaz
 
@@ -100,7 +100,6 @@ if __name__ == "__main__":
     # Loads the protocol-modules listed on config.protocols
     for nametuple in config.protocols:
         filemod = os.path.join(config.protocolpath, nametuple[0])
-        print("DEBUG: Importing file " + filemod)
         if os.path.isfile(filemod):
             try:
                 path, filemod = os.path.split(filemod)
@@ -111,7 +110,7 @@ if __name__ == "__main__":
                 print("ERROR: Failed to import protocol " + filemod)
                 continue
             else:
-                print("DEBUG: Imported " + module)
+                print("INFO: Imported " + module)
     # Initialize the servers
     socketId = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     socketId.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -122,7 +121,7 @@ if __name__ == "__main__":
         print("FATAL: Failed to create a socket")
         exit(2)
     socketId.listen(config.listen)
-    print("INFO: Listening!!!")
+    print("INFO: Listening at port " + str(config.port) + "!!!")
     while True:
         client, address = socketId.accept()
         client.settimeout(config.timeout)

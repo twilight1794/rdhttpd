@@ -20,7 +20,7 @@ listen = 10
 o = os.uname()
 uadata = {
     "ServerName": "RainbowDash",
-    "ServerVersion": "1.0",
+    "ServerVersion": "0.1",
     "PlatformName": "Python",
     "PlatformVersion": str(sys.version_info[0]) + "." + str(sys.version_info[1]) + "." + str(sys.version_info[2]), # e.g. 3.4.3
     "OSName": "LinuxMint",

@@ -1,3 +1,23 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Date of version: 9/dic/2017 (G. C.)
+# The Rainbow Dash HTTP Daemon Server
+# Copyright © 2017 Giovanni Alfredo Garciliano Díaz
+
+# This file is part of rdhttpd
+# rdhttpd is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# rdhttpd is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with rdhttpd.  If not, see <http://www.gnu.org/licenses/>.
+
 statuscodes = {
 	("100", "Continue"),
 	("101", "Switching Protocols"),
@@ -62,7 +82,6 @@ statuscodes = {
 	("511", "Network Authentication Required"),
 }
 
-
 iso639 = [
 	"aa", # afar
 	"ab", # abjasio
@@ -71,7 +90,7 @@ iso639 = [
 	"ak", # akano
 	"am", # amhárico
 	"an", # aragonés
-	"ar", # árabe*/
+	"ar", # árabe
 	"as", # asanés
 	"av", # avar
 	"ai", # aimara
@@ -137,7 +156,7 @@ iso639 = [
 	"io", # ido
 	"is", # islandés
 	"it", # italiano
-	"iu", # inuktitut*/
+	"iu", # inuktitut
 	"ja", # japonés
 	"jv", # javanés
 	"ka", # georgiano
