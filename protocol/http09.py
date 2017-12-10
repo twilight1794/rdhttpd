@@ -3,8 +3,8 @@
 import importlib
 import os
 
-class HTTP09server(object):
-    def server(self, request):
+class server(object):
+    def serve(self, request):
         '''Here we redefine the server() function'''
         treq = request.partition(" ")
         treq = list(treq)

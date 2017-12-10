@@ -8,6 +8,8 @@ import sys
 protocolpath = "protocol/"
 protocols = (
     ("http09.py", "GET /?.+"),
+#    ("http10.py", "GET /?.+ HTTP/1.0"),
+#    ("http11.py", "GET /?.+ HTTP/1.1"),
     ("example.py", ".*")
 )
 

@@ -26,7 +26,7 @@ import importlib
 import socket
 import threading
 
-loadedprotoc = []
+loadedprotoc = {}
 
 appInfo = {
     "name": "Rainbow Dash HTTP Daemon",
@@ -59,25 +59,18 @@ class server(object):
             threading.Thread(target = self.listenClient,args = (client,address)).start()
     def listenClient(self, client, address):
         recvmsg = client.recv(65355)
-        sendmsg = self.server(recvmsg.decode("utf-8"))
+        objmsg = httpcommon.httpreq().parse(recvmsg.decode("utf-8"))
+        # Select protocol
+        for y in config.protocols:
+            if re.match(y[1], objmsg["requestLine"]):
+                loadedprotoc[y[0].partition(".py")[0]].server.serve(objmsg)
+            else:
+                continue
         client.send(sendmsg.encode())
         client.close()
     def server(self, request):
         response = "Example"
         return response
-
-def listenClient(client, address):
-    recvmsg = client.recv(65355)
-    sendmsg = recvmsg.decode("utf-8")
-    objmsg = httpcommon.httpreq().parse(sendmsg)
-    # select protocol
-    for y in config.protocols:
-        if re.match(y[1], objmsg["requestLine"]):
-            pass
-        else:
-            continue;
-    client.send(sendmsg.encode())
-    client.close()
 
 if __name__ == "__main__":
     print(appInfo["name"] + " v" + appInfo["version"])
@@ -105,8 +98,8 @@ if __name__ == "__main__":
                 path, filemod = os.path.split(filemod)
                 module = "{0}.{1}".format(path, filemod[:-3])
                 print("DEBUG: Importing", module)
-                loadedprotoc.append(importlib.import_module(module))
-            except OSError as e:
+                loadedprotoc[nametuple[0].partition(".py")[0]] = importlib.import_module(module)
+            except OSError:
                 print("ERROR: Failed to import protocol " + filemod)
                 continue
             else:
@@ -121,7 +114,7 @@ if __name__ == "__main__":
         print("FATAL: Failed to create a socket")
         exit(2)
     socketId.listen(config.listen)
-    print("INFO: Listening at port " + str(config.port) + "!!!")
+    print("INFO: Listening at port " + str(config.port) + "!")
     while True:
         client, address = socketId.accept()
         client.settimeout(config.timeout)
